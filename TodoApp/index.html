@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <main>
+            <h2>My Todo App</h2>
+            <div class="container">
+                <form action="" id="formJs">
+                    <input
+                        class="FormInputJS"
+                        type="text"
+                        name="text"
+                        id="text"
+                        autocomplete="off"
+                        placeholder="Add New Todo Here"
+                        autofocus />
+                    <button type="submit">Add</button>
+                </form>
+                <nav>
+                    <ul>
+                        <li class="active todoJS">Todo</li>
+                        <li class="completedJS">Completed</li>
+                        <li class="allJS">All</li>
+                    </ul>
+                </nav>
+                <div class="todoContainer todosJS"></div>
+            </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>

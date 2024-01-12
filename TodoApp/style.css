@@ -1,0 +1,145 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: 500px;
+    /* background: gray; */
+    border-radius: 13px;
+    border: 2px solid #025f5f;
+    overflow: hidden;
+    box-shadow: 0px 8px 15px 0px rgb(179, 178, 178);
+}
+
+form {
+    width: 100%;
+    height: 44px;
+    background: #fff;
+    /* border-bottom: 2px solid #025f5f; */
+    overflow: hidden;
+    /* border-top-left-radius: 20px; */
+}
+
+form input {
+    width: 84%;
+    height: 100%;
+    font-size: 16px;
+    padding: 5px 8px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+form button {
+    width: 15%;
+    height: 100%;
+    background-color: #025f5f;
+    color: white;
+    border: none;
+    float: right;
+}
+
+nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    border-top: 2px solid #2c3030;
+    user-select: none;
+}
+nav ul li {
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 2px solid #025f5f;
+    cursor: pointer;
+}
+nav li.active {
+    background: #083939;
+    color: white;
+}
+nav ul li:nth-child(1),
+ul li:nth-child(2) {
+    border-right: 1px solid #025f5f;
+}
+
+/* ========================= */
+.todoItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid #025f5f;
+    padding: 8px 5px;
+}
+.todoItem .checkbox {
+    scale: 1.4;
+    border: none;
+    outline: none;
+}
+
+.todoText {
+    width: 70%;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.todoText .text {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px 2px;
+}
+
+.edit-save,
+.deleteIcon {
+    font-size: 20px;
+    color: rgb(150, 124, 9);
+    cursor: pointer;
+    width: 25px;
+    user-select: none;
+}
+.deleteIcon {
+    width: auto;
+    height: 100%;
+    font-size: 25px;
+    text-align: right;
+    margin-left: 10px;
+    color: red;
+}
+.deleteIcon img {
+    width: 25px;
+    transform: translateY(4px);
+    height: 100%;
+}
+
+/* ====================== */
+input.completed {
+    text-decoration: line-through;
+    color: #8f5a5a;
+}
+
+.editable {
+    background: rgb(231, 219, 219);
+}
+input.autofocus {
+    background: white !important;
+    border: 1px solid black !important;
+    user-select: auto !important;
+}
