@@ -16,9 +16,8 @@ main {
 }
 
 .container {
-    width: 400px;
+    width: 600px;
     height: 500px;
-    /* background: gray; */
     border-radius: 13px;
     border: 2px solid #025f5f;
     overflow: hidden;
@@ -29,9 +28,7 @@ form {
     width: 100%;
     height: 44px;
     background: #fff;
-    /* border-bottom: 2px solid #025f5f; */
     overflow: hidden;
-    /* border-top-left-radius: 20px; */
 }
 
 form input {
@@ -78,6 +75,11 @@ ul li:nth-child(2) {
 }
 
 /* ========================= */
+.todoContainer {
+    overflow-y: auto;
+    height: calc(100% - 85px);
+    /* background: red; */
+}
 .todoItem {
     width: 100%;
     display: flex;
@@ -130,16 +132,53 @@ ul li:nth-child(2) {
 }
 
 /* ====================== */
-input.completed {
+.completed {
+    background: rgb(208, 188, 188);
+    /* } */
+    /* input.completed { */
     text-decoration: line-through;
-    color: #8f5a5a;
+    color: #2e0505;
 }
 
 .editable {
-    background: rgb(231, 219, 219);
+    background: rgb(230, 231, 219);
 }
 input.autofocus {
     background: white !important;
     border: 1px solid black !important;
     user-select: auto !important;
+}
+
+/* ============================== */
+@media (max-width: 700px) {
+    .container {
+        width: 500px;
+    }
+}
+@media (max-width: 700px) {
+    .container {
+        width: 400px;
+    }
+}
+@media (max-width: 445px) {
+    main {
+        gap: 0;
+    }
+    main > h2 {
+        width: 100%;
+        padding: 8px 5px;
+        text-align: left;
+        font-size: 20px;
+    }
+    .container {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0%;
+    }
+
+    form {
+        margin-bottom: 10px;
+        box-shadow: 0px 5px 10px 0px rgb(230, 230, 230);
+    }
 }

@@ -16,16 +16,16 @@ let all = false;
 let completed = false;
 let uncompleted = true;
 let filterdTodos = [];
-// let uncompletedTodos = [];
 //
-
-let todoItems = [];
-
+// getting localStorage todos
+const savedTodos = JSON.parse(localStorage.getItem('todos'));
+let todoItems = savedTodos ? savedTodos : [];
+//
+// Form handler adding new todo
 todoForm.addEventListener(
     'submit',
     (handleTodoForm = (e) => {
         e.preventDefault();
-
         const newTodo = {
             todoText: formInput.value,
             id: Date.now(),
@@ -33,7 +33,7 @@ todoForm.addEventListener(
             isTodoEditable: false,
         };
         if (formInput.value !== '') {
-            todoItems.push(newTodo);
+            todoItems.unshift(newTodo);
             formInput.value = '';
         }
         addTodo();
@@ -41,29 +41,36 @@ todoForm.addEventListener(
     })
 );
 
-// setting filter for all and completed todos
-uncompletedBtn.addEventListener('click', uncompletedFilter);
+// seting completed and uncompleted filtering
+const uncompletedFilter = () => {
+    filterdTodos = todoItems.filter((todo) => !todo.completed);
+    addTodo();
+};
 
-function uncompletedFilter() {
+uncompletedBtn.addEventListener('click', () => {
     completed = false;
     all = false;
-    filterdTodos = todoItems.filter((todo) => !todo.completed);
     uncompleted = true;
     allBtn.classList.remove('active');
     completedBtn.classList.remove('active');
     uncompletedBtn.classList.add('active');
-    addTodo();
-}
+    uncompletedFilter();
+});
+
 uncompletedFilter();
-completedBtn.addEventListener('click', () => {
+
+const completedFilter = () => {
     filterdTodos = todoItems.filter((todo) => todo.completed);
+    addTodo();
+};
+completedBtn.addEventListener('click', () => {
     uncompletedBtn.classList.remove('active');
     allBtn.classList.remove('active');
     completedBtn.classList.add('active');
     all = false;
     uncompleted = false;
     completed = true;
-    addTodo();
+    completedFilter();
 });
 allBtn.addEventListener('click', () => {
     completedBtn.classList.remove('active');
@@ -74,13 +81,13 @@ allBtn.addEventListener('click', () => {
     all = true;
     addTodo();
 });
-
+// adding todos
 function addTodo() {
     TodosContainer.innerHTML = (all ? todoItems : filterdTodos)
         .map((todo, index) => {
             return `<div class="todoItem ${
                 todo.isTodoEditable && 'editable'
-            } ">
+            } ${todo.completed && 'completed'}">
         <input
         ${todo.completed ? 'checked' : ''}
             onChange='toggleComplete(${todo.id})'
@@ -114,31 +121,35 @@ function addTodo() {
     </div>`;
         })
         .join('');
+    addToStorage();
 }
 addTodo();
 
+// complete and delete functionality
 const toggleComplete = (id) => {
     todoItems.forEach((todo) => {
         if (todo.id == id) {
             todo.completed
                 ? (todo.completed = false)
                 : !todo.isTodoEditable && (todo.completed = true);
-            console.log(todo.completed);
         }
-        addTodo();
-        uncompletedFilter();
+        completed && completedFilter();
+        uncompleted && uncompletedFilter();
     });
+    addTodo();
 };
 
 function deleteTodo(id) {
     todoItems = todoItems.filter((todo) => id !== todo.id);
+
+    uncompleted && uncompletedFilter();
+    completed && completedFilter();
     addTodo();
-    console.log(todoItems);
 }
 function todoOnChange(text) {
     editedValue = text;
 }
-
+// edit and update
 function EditAndUpdate(id) {
     todoItems.forEach((todo) => {
         if (todo.id == id) {
@@ -152,9 +163,12 @@ function EditAndUpdate(id) {
                 todo.isTodoEditable = true;
             }
         }
-        console.log(todo.todoText);
     });
     addTodo();
 }
 
-// setting filter for all and completed section
+// setting todo items to loacal storage
+
+function addToStorage() {
+    localStorage.setItem('todos', JSON.stringify(todoItems));
+}
