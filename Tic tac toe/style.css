@@ -19,37 +19,49 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 .container {
     width: fit-content;
     margin-top: 20px;
-    border: 2px solid red;
-    /* height: 70%; */
-    /* border: 2px solid red; */
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     position: relative;
 }
+.container h1 {
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+}
+.Score_player {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
 .container .player {
-    position: absolute;
     top: 7%;
     left: 5px;
     font-size: 14px;
     color: rgb(234, 211, 247);
 }
+
+.container .score {
+    right: 10px;
+    top: 10px;
+    color: white;
+}
+.score h4 {
+    color: rgb(234, 211, 247);
+}
+
 .player span {
     color: white;
     text-decoration: underline;
     text-underline-offset: 3px;
     text-transform: uppercase;
 }
-.container h1 {
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-    text-decoration: underline;
-    color: white;
-}
+
 .box-container {
     display: grid;
     grid-template-columns: 130px 130px 130px;
@@ -60,6 +72,7 @@ main {
     display: grid;
     place-items: center;
     font-size: 5rem;
+    background-color: rgba(218, 180, 180, 0.059);
     color: rgb(196, 138, 138);
     cursor: pointer;
 }
@@ -95,4 +108,12 @@ main {
     margin: 10px 0;
     font-size: 22px;
     cursor: pointer;
+}
+
+@media (max-width: 410px) {
+    .box-container {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+    }
 }
